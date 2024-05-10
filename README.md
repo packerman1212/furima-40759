@@ -43,7 +43,7 @@ Things you may want to cover:
 | product_state_id      | integer    | null: false                    |
 | fee_responsibility_id | integer    | null: false                    |
 | prefecture_id         | integer    | null: false                    |
-| shipping_day_id      | integer    | null: false                    |
+| shipping_day_id       | integer    | null: false                    |
 
 ### Association
 - belongs_to :user
