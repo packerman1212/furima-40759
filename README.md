@@ -60,7 +60,7 @@ Things you may want to cover:
 ### Association
 - belongs_to :product
 - belongs_to :user
-- has_one :shipping_addresses
+- has_one :shipping_address
 
 
 ## shipping_addresses テーブル
