@@ -27,11 +27,11 @@ Things you may want to cover:
 | birth_date         | date   | null: false               |
 
 ### Association
-- has_many :products
+- has_many :items
 - has_many :orders
 
 
-## products テーブル
+## items テーブル
 
 | Column                | Type       | Options                        |
 | --------------------- | ---------- | ------------------------------ |
@@ -54,11 +54,11 @@ Things you may want to cover:
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| product | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 | user    | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :product
+- belongs_to :item
 - belongs_to :user
 - has_one :shipping_address
 
