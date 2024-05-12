@@ -4,11 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # passwordは半角英数字混入のみ許可する
+  validates :password,
+            format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'is invalid. Include both letters and numbers.' }
+
   with_options presence: true do
     validates :nickname, :birth_date
-    # 半角英数字混入のみ許可する
-    validates :password,
-              format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'is invalid. Include both letters and numbers.'}
     # ひらがな、カタカナ、漢字のみ許可する
     validates :last_name,
               :first_name,
