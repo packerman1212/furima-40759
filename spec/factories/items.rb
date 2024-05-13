@@ -1,5 +1,17 @@
 FactoryBot.define do
   factory :item do
-    
+    name { Faker::Book.title }
+    description { Faker::Lorem.paragraph }
+    price { Faker::Commerce.price(range: 300..9_999_999).to_i }
+    category_id { Faker::Number.between(from: 1, to: 10) }
+    product_state_id { Faker::Number.between(from: 1, to: 6) }
+    fee_responsibility_id { Faker::Number.between(from: 1, to: 2) }
+    prefecture_id { Faker::Number.between(from: 1, to: 47) }
+    shipping_day_id { Faker::Number.between(from: 1, to: 3) }
+    association :user
+
+    after(:build) do |item|
+      item.image.attach(io: File.open('public/images/test_image.jpg'), filename: 'test_image.jpg', content_type: 'image/png')
+    end
   end
 end
