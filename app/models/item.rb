@@ -10,7 +10,9 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
 
   with_options presence: true do
-    validates :name, :description, :image
+    validates :image
+    validates :name, length: { maximum: 40 }
+    validates :description, length: { maximum: 1000 }
     validates :price,
               numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
               format: { with: /\A\d+\z/, message: 'is not a number' }
