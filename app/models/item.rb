@@ -14,8 +14,11 @@ class Item < ApplicationRecord
     validates :name, length: { maximum: 40 }
     validates :description, length: { maximum: 1000 }
     validates :price,
-              numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
-              format: { with: /\A\d+\z/, message: 'is not a number' }
+              numericality: {
+                only_integer: true,
+                greater_than_or_equal_to: 300,
+                less_than_or_equal_to: 9_999_999
+              }
   end
 
   # ActiveHash attributes validation
