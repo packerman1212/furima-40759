@@ -7,10 +7,11 @@ class OrderAddress
                 :city,
                 :address1,
                 :address2,
-                :phone_number
+                :phone_number,
+                :token
 
   with_options presence: true do
-    validates :user_id, :item_id, :city, :address1
+    validates :user_id, :item_id, :city, :address1, :token
 
     validates :post_code,
               format: {
