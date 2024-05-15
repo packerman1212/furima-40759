@@ -28,14 +28,14 @@ class OrderAddress
             numericality: { other_than: 0, message: "can't be blank" }
 
   def save
-    order = Order.create(item_id: item_id, user_id: user_id)
+    order = Order.create(item_id:, user_id:)
     ShippingAddress.create(
-      post_code: post_code,
-      prefecture_id: prefecture_id,
-      city: city,
-      address1: address1,
-      address2: address2,
-      phone_number: phone_number,
+      post_code:,
+      prefecture_id:,
+      city:,
+      address1:,
+      address2:,
+      phone_number:,
       order_id: order.id
     )
   end
