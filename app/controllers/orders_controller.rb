@@ -1,6 +1,9 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: :index
   before_action :set_item, only: [:index, :create]
   before_action :set_public_key, only: [:index, :create]
+  before_action :check_sold_out, only: :index
+  before_action :move_to_index, only: :index
 
   def index
     @order_address = OrderAddress.new
@@ -24,7 +27,7 @@ class OrdersController < ApplicationController
   end
 
   def set_public_key
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
   end
 
   def order_params
@@ -43,11 +46,19 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def check_sold_out
+    redirect_to root_path if Order.exists?(item_id: @item.id)
+  end
+
+  def move_to_index
+    redirect_to root_path if current_user == @item.user
   end
 end
