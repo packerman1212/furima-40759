@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
+  has_many :orders
 
   # passwordは半角英数字混入のみ許可する
   validates :password,

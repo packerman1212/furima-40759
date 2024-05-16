@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    name { Faker::Book.title }
+    name { Faker::Lorem.words(number: 4).join(' ')[0..39] }
     description { Faker::Lorem.paragraph }
     price { Faker::Number.between(from: 300, to: 9_999_999) }
     category_id { Faker::Number.between(from: 1, to: 10) }
