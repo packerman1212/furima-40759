@@ -19,3 +19,4 @@ function priceCalculation (){
   }
 
 window.addEventListener('turbo:load', priceCalculation)
+window.addEventListener('turbo:render', priceCalculation)
