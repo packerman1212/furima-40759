@@ -20,7 +20,7 @@ class OrderAddress
               }
 
     validates :phone_number,
-              length: { minimum: 10, maximum: 11, message: 'is too short' },
+              length: { minimum: 10, maximum: 11 },
               format: { with: /\A\d+\z/, message: 'is invalid. Input only number' }
   end
 
