@@ -80,7 +80,13 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberが10桁以下のとき' do
         @order_address.phone_number = Faker::Number.number(digits: rand(8..9))
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Phone number is too short')
+        expect(@order_address.errors.full_messages).to include('Phone number is too short (minimum is 10 characters)')
+      end
+
+      it 'phone_numberが12桁以上のとき' do
+        @order_address.phone_number = Faker::Number.number(digits: rand(12..13))
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
       end
 
       it 'item_idが紐づいてないとき' do
